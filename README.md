@@ -38,10 +38,15 @@ Ansible needs python version 2 to run sucessfully. Maybe there will be a SUDO pa
 ansible pipe --sudo -K -m raw -a "apt-get update; apt-get install -y python python-simplejson"
 ansible pipe -m ping // check python
 ```
-### Start playbook
-This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_, deletes the start user (inclusive home), installs docker and creates some containers (jenkins, ansible, git). The git will be initialized with this example project:  https://github.com/AlwaysTesting/ExampleProject.git. Jenkins will use this git to go on building this pipeline.
+### Setup playbook
+This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_ and deletes the start user (inclusive home).
 ```
 ansible-playbook run.yml
+```
+### Application playbook
+This playbook installs docker and creates some containers (jenkins, ansible, git). The git will be initialized with this example project:  https://github.com/AlwaysTesting/ExampleProject.git. Jenkins will use this git to go on building this pipeline.
+```
+ansible-playbook run-application.yml
 ```
 
 ## Licence

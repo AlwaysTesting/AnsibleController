@@ -1,4 +1,4 @@
-# AnsibleController
+# AnsibleController für Debian Stretch
 Generates with ansible the infrastructure for an ContinuousIntegration/Testing project.
 
 ## Install
@@ -6,35 +6,43 @@ Generates with ansible the infrastructure for an ContinuousIntegration/Testing p
 server = CI-pipeline server
 
 ### Paketquellen
-Bitte den jeweiligen Paketmanager des Betriebsystems nutzen. Auf Debian basierenden Systemen ist meistens "apt" vorinstalliert:
-```
-apt-get install git
-apt-get install ansible
-```
-### Environment and repository
 ```
 sudo bash // become root user
-adduser ansible --home /msr/<project specific user> --disabled-login; // create technical user
+apt-get update
+apt-get install git ansible
+```
+### Create project specific user and directory
+```
+adduser ansible --home /msr/people/<project specific user> --disabled-login; // create technical user
 su <project specific user>;
 echo -e "\n## Added by ansible controller script\ncd $HOME;" >> ~/.bashrc // go by login to project dir
 . ~/.bashrc // load conf instantly
 ```
-For the ssh connection you need to put the receive key to ~/.ssh/id_rsa(|.pub).
-If you didn't get a key, generate one with `ssh-kegen` and copy the public key to the server.
+### Donload playbooks, roles and handlers
 ```
-git clone https://github.com/AlwaysTesting/AnsibleController.git 
-cd AnsibleController;
+git clone https://github.com/AlwaysTesting/AnsibleController.git AnsibleController // this repo
+cd AnsibleController // goto
 ```
-Edit the hosts file:
-* Replace &lt;cipipeline-host&gt; with the server domainname or ip address 
-* Replace &lt;ssh-user&gt; with the predefined user on the server
-### Prepare the server
+### Connect and create credentials
+For the first login to the server ansible needs credentials.
+This script use therefore a user and a key. They will be *deleted* during installation.
+Replace the ip adress, the user and the private key file in the _hosts_-file with the server ones.
+There will be a prompt "No matching host key fingerprint found in DNS. Are you sure you want to continue connecting (yes/no)?". Type _yes_.
 ```
-ansible source --sudo -m raw -a "apt-get install -y python python-simplejson" // installs required packages for ansible
+ansible pipe -m raw -a "echo server is online" // check if the server responses
 ```
-
-
-## Run
+Now there should be a green success message in the command prompt.
+### Install python
+Ansible needs python version 2 to run sucessfully. Maybe there will be a SUDO password prompt.
+```
+ansible pipe --sudo -K -m raw -a "apt-get update; apt-get install -y python python-simplejson"
+ansible pipe -m ping // check python
+```
+### Start playbook
+This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_, deletes the start user (inclusive home), installs docker and creates some containers (jenkins, ansible, git). The git will be initialized with this example project:  https://github.com/AlwaysTesting/ExampleProject.git. Jenkins will use this git to go on building this pipeline.
+```
+ansible-playbook run.yml
+```
 
 ## Licence
-
+...

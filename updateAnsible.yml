@@ -19,8 +19,7 @@
     #  name: ansible
     #  default_release: stretch-backports
     #  update_cache: yes
-    row:
-      command: apt-get install -t stretch-backports ansible
+    command: apt-get install -t stretch-backports ansible
   
 #
 # eof ..

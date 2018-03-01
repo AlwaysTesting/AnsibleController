@@ -2,6 +2,7 @@
 # Update 'ansible' to version 2.4
 
 - hosts: localhost
+  become: yes
   tasks:
   - name: Add stretch-backports repro
     apt_repository:

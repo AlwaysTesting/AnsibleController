@@ -23,9 +23,8 @@
     register: result
  
   - name: Output apt
-    debug: 
-      var: result.output
-      verbosity: 2
+    debug:
+      msg: "{{ result.stdout_lines }}"
 
 #
 # eof ..

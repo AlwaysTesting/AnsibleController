@@ -20,7 +20,7 @@
     lineinfile:
       path: /etc/sudoers
       state: present
-      regexp: '^%sudo ALL='
+      regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
 

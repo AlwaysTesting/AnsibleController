@@ -1,7 +1,7 @@
 # AnsibleController für Debian Stretch
 Generates with ansible the infrastructure for an ContinuousIntegration/Testing project.
 
-## Install
+## Install and prepare server
 ### Definition
 server = CI-pipeline server
 
@@ -38,6 +38,8 @@ Ansible needs python version 2 to run sucessfully. Maybe there will be a SUDO pa
 ansible pipe --sudo -K -m raw -a "apt-get update; apt-get install -y python python-simplejson"
 ansible pipe -m ping // check python
 ```
+## Playbooks
+These playbooks require Ansible 2.3 or higher and were tested on Debian 9 so we recommend that you use Debian or Ubuntu.
 ### Setup playbook
 This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_ and deletes the start user (inclusive home).
 ```

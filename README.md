@@ -39,11 +39,17 @@ ansible pipe --sudo -K -m raw -a "apt-get update; apt-get install -y python pyth
 ansible pipe -m ping // check python
 ```
 ## Playbooks
-These playbooks require Ansible 2.3 or higher and were tested on Debian 9 so we recommend that you use Debian or Ubuntu.
+These playbooks were tested on Debian 9 so we recommend that you use Debian or Ubuntu.
+## Update ansible
+```
+ansible-playbook -K updateAnsible.yml
+```
+
+The following playbooks require Ansible 2.4 or higher.
 ### Setup playbook
 This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_ and deletes the start user (inclusive home).
 ```
-ansible-playbook run.yml
+ansible-playbook -K run.yml
 ```
 ### Application playbook
 This playbook installs docker and creates some containers (jenkins, ansible, git). The git will be initialized with this example project:  https://github.com/AlwaysTesting/ExampleProject.git. Jenkins will use this git to go on building this pipeline.

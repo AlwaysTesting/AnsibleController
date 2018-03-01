@@ -42,6 +42,12 @@
       state: present
       regexp: '^StrictModes'
       line: 'StrictModes yes'
+  - name: Protokoll version 2 (ssh)
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      state: present
+      regexp: '^Protocol'
+      line: 'Protocol 2'
   - name: sshd neustarten
     service:
       name: sshd

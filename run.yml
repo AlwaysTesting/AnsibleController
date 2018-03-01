@@ -12,10 +12,7 @@
       state: absent
       regexp: '^%wheel'
       validate: '/usr/sbin/visudo -cf %s'
-  - name: Remove wheel group from /etc/groups
-    group:
-      name: wheel
-      state: absent
+
    - name: Add a NOPASSWD entry in the sudoers file
      lineinfile:
        path: /etc/sudoers

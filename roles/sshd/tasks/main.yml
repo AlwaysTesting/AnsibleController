@@ -30,7 +30,7 @@
     name: sshd
     state: restarted
     register: result
-- name: Output sshd per line
+- name: Output sshd
     debug:
       msg: "{{ result.stdout_lines }}"
 #

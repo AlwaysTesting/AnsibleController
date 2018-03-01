@@ -3,6 +3,19 @@
 # This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification,
 # creates a user 'ansible' and deletes the start user (inclusive home).
 
+- host: localhost
+  tasks:
+  - name: Get user
+      command: whoami
+      register: user
+      
+  - name: Create ssh key
+    user:
+      name: {{ user.stdout }}
+      generate_ssh_key: yes
+      ssh_key_bits: 8192      
+      append: yes 
+
 - hosts: pipe
   become: yes 
   tasks:
@@ -23,6 +36,21 @@
       regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
+  - name: Adduser 'ansible'
+    user:
+      name: ansible
+      comment: technical ansible user
+      group: ansible
+      groups: sudo, docker
+      home: /msr/people/ansible
+      shell: /bin/bash
+      append: yes    
+  - name: Set authorized key took from file
+    authorized_key:
+      user: ansible
+      state: present
+      key: "{{ lookup('file', '~{{user.stdout}}/.ssh/id_rsa.pub') }}"
+      
   roles:
   - sshd
 #

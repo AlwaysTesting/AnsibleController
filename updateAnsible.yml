@@ -15,10 +15,12 @@
       state: present
       filename: 'ansible-stretch-backports'
   - name: Update repositories cache and install "ansible" package
-    apt:
-      name: ansible
-      default_release: stretch-backports
-      update_cache: yes
+    #apt:
+    #  name: ansible
+    #  default_release: stretch-backports
+    #  update_cache: yes
+    row:
+      command: apt-get install -t stretch-backports ansible
   
 #
 # eof ..

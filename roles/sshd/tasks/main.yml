@@ -29,7 +29,6 @@
   service:
     name: sshd
     state: restarted
-    register: result
 
 #
 # eof 

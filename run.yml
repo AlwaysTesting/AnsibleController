@@ -6,11 +6,11 @@
 - hosts: pipe
   tasks:
   - name: Add a NOPASSWD entry in the sudoers file
-    lineinfile:
-      path: /etc/sudoers
-      state: present
-      regexp: '^%SUDO ALL='
-      line: '%SUDO ALL=(ALL) NOPASSWD: ALL'
-      validate: '/usr/sbin/visudo -cf %s'
+    - lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%SUDO ALL='
+        line: '%SUDO ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'
 #
 # eof ..

@@ -8,12 +8,10 @@
     apt_repository:
       repo: deb http://ftp.de.debian.org/debian/ stretch-backports main
       state: present
-      filename: 'Ansible_stretch-backports'
   - name: Add stretch-backports repro (doc)
     apt_repository:
       repo: deb-src http://ftp.de.debian.org/debian/ stretch-backports main
       state: present
-      filename: 'Ansible_stretch-backports'
   - name: Update repositories cache and install "ansible" package
     apt:
       name: ansible

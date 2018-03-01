@@ -42,6 +42,7 @@
       groups: sudo, docker
       home: /msr/people/ansible
       shell: /bin/bash
+      createhome: yes
       append: yes    
   - name: Set authorized key took from file
     authorized_key:

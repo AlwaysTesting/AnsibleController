@@ -17,6 +17,7 @@
   - name: Update repositories cache and install "ansible" package
     apt:
       name: ansible
+      default_release: stretch-backports
       update_cache: yes
   
 #

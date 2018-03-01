@@ -23,35 +23,7 @@
       regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
-      
-  - name: Disable PasswordAuthentication (ssh)
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      state: present
-      regexp: '^PasswordAuthentication'
-      line: 'PasswordAuthentication no'
-  - name: Disable root login (ssh)
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      state: present
-      regexp: '^PermitRootLogin'
-      line: 'PermitRootLogin no'
-  - name: Enable StrictMode (ssh)
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      state: present
-      regexp: '^StrictModes'
-      line: 'StrictModes yes'
-  - name: Protokoll version 2 (ssh)
-    lineinfile:
-      path: /etc/ssh/sshd_config
-      state: present
-      regexp: '^Protocol'
-      line: 'Protocol 2'
-  - name: sshd neustarten
-    service:
-      name: sshd
-      state: restarted
-
+  - name: Secure ssh
+    role: sshd
 #
 # eof ..

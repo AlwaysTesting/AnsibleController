@@ -32,18 +32,8 @@
       regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
-  - name: Addgroup docker
-    group:
-      name: docker
   - name: Adduser 'ansible'
-    user:
-      name: ansible
-      comment: technical ansible user
-      groups: sudo, docker
-      home: /msr/people/ansible
-      shell: /bin/bash
-      createhome: yes
-      append: yes    
+    command: adduser ansible --home /msr/people/ansible --disabled-login --groups docker, sudo --comment "technical ansible user";
   - name: Set authorized key took from file
     authorized_key:
       user: ansible

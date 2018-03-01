@@ -1,1 +1,9 @@
 ---
+# Prepare server for CI-pipeline
+# This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification,
+# creates a user 'ansible' and deletes the start user (inclusive home).
+
+- name: Add a NOPASSWD entry in the sudoers file
+
+#
+# eof ..

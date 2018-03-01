@@ -13,7 +13,8 @@ apt-get install git ansible
 ```
 ### Create project specific user and directory
 ```
-adduser ansible --home /msr/people/<project specific user> --disabled-login; // create technical user
+adduser <project specific user> --home /msr/people/<project specific user> --disabled-login; // create technical user
+echo -e "\n# Grants ansible sudo rights\nansible  ALL = NOPASSWD: ALL" >> /etc/sudoers // grants sudo rights
 su <project specific user>;
 echo -e "\n## Added by ansible controller script\ncd $HOME;" >> ~/.bashrc // go by login to project dir
 . ~/.bashrc // load conf instantly
@@ -42,7 +43,7 @@ ansible pipe -m ping // check python
 These playbooks were tested on Debian 9 so we recommend that you use Debian or Ubuntu.
 ## Update ansible
 ```
-ansible-playbook -K updateAnsible.yml
+ansible-playbook updateAnsible.yml
 ```
 
 The following playbooks require Ansible 2.4 or higher.

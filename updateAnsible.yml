@@ -20,7 +20,8 @@
     #  default_release: stretch-backports
     #  update_cache: yes
     command: apt-get install -t stretch-backports ansible
-    warn: false
-  
+  - name: Output apt
+    debug:
+      msg: "{{ stdout }}"
 #
 # eof ..

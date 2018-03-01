@@ -3,7 +3,7 @@
 # This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification,
 # creates a user 'ansible' and deletes the start user (inclusive home).
 
-- host: localhost
+- hosts: localhost
   tasks:
   - name: Create ssh key
     user:

@@ -23,7 +23,7 @@
       regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
-  - name: Secure ssh
-    role: sshd
+  roles:
+  - sshd
 #
 # eof ..

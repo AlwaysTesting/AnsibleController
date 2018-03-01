@@ -32,10 +32,9 @@
       regexp: '^%sudo\s*ALL='
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: '/usr/sbin/visudo -cf %s'
-  - name: Addgroup
-      group:
-        name: docker
-      
+  - name: Addgroup docker
+    group:
+      name: docker
   - name: Adduser 'ansible'
     user:
       name: ansible

@@ -36,7 +36,6 @@
     user:
       name: ansible
       comment: technical ansible user
-      group: ansible
       groups: sudo, docker
       home: /msr/people/ansible
       shell: /bin/bash

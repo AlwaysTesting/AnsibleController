@@ -54,7 +54,7 @@
       key: "{{ lookup('file', '~' + lookup('env','USER') + '/.ssh/id_rsa.pub') }}"
   - name: Delete start user
     user:
-      name: "{{ user }}"
+      name: "{{ ansible_env.USER }}"
       state: absent
       
   roles:

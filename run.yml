@@ -51,12 +51,14 @@
     authorized_key:
       user: ansible
       state: present
-      key: "{{ lookup('file', '~' + lookup('env','USER') + '/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '~' + lookup('env','USER') + '/.ssh/id_rsa.pub') }}"  
+  - name: Output apt
+    debug:
+      msg: "{{ ansible }}"
   - name: Delete start user
     user:
       name: "{{ ansible_env.USER }}"
       state: absent
-      
   roles:
   - sshd
   

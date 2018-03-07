@@ -52,8 +52,23 @@
       user: ansible
       state: present
       key: "{{ lookup('file', '~' + lookup('env','USER') + '/.ssh/id_rsa.pub') }}"
+  - name: Delete start user
+    user:
+      name: {{ user }}
+      state: absent
       
   roles:
   - sshd
+  
+  - hosts: localhost
+  tasks:
+  - name: Modify hosts-file
+    lineinfile:
+      path: hosts
+      state: present
+      regexp: '^([^\\s]*)'
+      line: '\1\\sansible_connection=ssh\\sansible_user=ansible\\s'
+      backrefs: yes
+      
 #
 # eof ..

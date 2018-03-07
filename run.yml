@@ -60,7 +60,7 @@
   roles:
   - sshd
   
-  - hosts: localhost
+- hosts: localhost
   tasks:
   - name: Modify hosts-file
     lineinfile:

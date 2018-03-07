@@ -39,6 +39,7 @@
     user:
       name: ansible
       home: /msr/people/ansible
+      createhome: yes
       groups: sudo, docker
       comment: "technical ansible user"
   - name: Set authorized key took from file

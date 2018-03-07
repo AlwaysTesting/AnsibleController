@@ -35,11 +35,15 @@
   - name: Create docker group
     group:
       name: docker
+  - name: Create project dir
+    file:
+      path: /msr/people/
+      state: directory
+      mode: 0774      
   - name: Adduser 'ansible'
     user:
       name: ansible
       home: /msr/people/ansible
-      createhome: yes
       groups: sudo, docker
       comment: "technical ansible user"
   - name: Set authorized key took from file

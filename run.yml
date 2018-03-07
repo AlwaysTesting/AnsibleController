@@ -39,7 +39,7 @@
     file:
       path: /msr/people/
       state: directory
-      mode: 0774      
+      mode: 0775      
   - name: Adduser 'ansible'
     user:
       name: ansible

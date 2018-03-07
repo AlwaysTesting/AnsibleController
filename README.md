@@ -25,8 +25,8 @@ git clone https://github.com/AlwaysTesting/AnsibleController.git AnsibleControll
 cd AnsibleController // goto
 ```
 ### Connect and create credentials
-For the first login to the server ansible needs credentials.
-This script use therefore a user and a key. They will be *deleted* during installation.
+For the first login to the server, ansible needs credentials.
+This script use therefore a user and a key. The user will be *deleted* on the target server during the installation.
 Replace the ip adress, the user and the private key file in the _hosts_-file with the server ones.
 There will be a prompt "No matching host key fingerprint found in DNS. Are you sure you want to continue connecting (yes/no)?". Type _yes_.
 ```
@@ -36,7 +36,7 @@ Now there should be a green success message in the command prompt.
 ### Install python
 Ansible needs python version 2 to run sucessfully. Maybe there will be a SUDO password prompt.
 ```
-ansible pipe --sudo -K -m raw -a "apt-get update; apt-get install -y python python-simplejson"
+ansible pipe --become -K -m raw -a "apt-get update; apt-get install -y python python-simplejson"
 ansible pipe -m ping // check python
 ```
 ## Playbooks
@@ -48,7 +48,7 @@ ansible-playbook updateAnsible.yml
 
 The following playbooks require Ansible 2.4 or higher.
 ### Setup playbook
-This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user _ansible_ and deletes the start user (inclusive home).
+This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user 'ansible' (which is in docker and sudo group), shares a ssh key and deletes the start user (exclusive home).
 ```
 ansible-playbook -K run.yml
 ```

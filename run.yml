@@ -44,7 +44,7 @@
     user:
       name: ansible
       home: /msr/people/ansible
-      groups: ansible, sudo, docker
+      groups: sudo, docker
       comment: "technical ansible user"
       shell: /bin/bash
   - name: Set authorized key took from file

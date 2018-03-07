@@ -57,7 +57,7 @@
       msg: "{{ ansible }}"
   - name: Delete start user
     user:
-      name: "{{ ansible_env.USER }}"
+      name: "{{ ansible_user }}"
       state: absent
   roles:
   - sshd

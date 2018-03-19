@@ -26,9 +26,7 @@ cd AnsibleController // goto
 ```
 ### Connect and create credentials
 For the first login to the server, ansible needs credentials.
-This script use therefore a user and a key. The user will be *deleted* on the target server during the installation.
-Replace the ip adress, the user and the private key file in the _hosts_-file with the server ones.
-There will be a prompt "No matching host key fingerprint found in DNS. Are you sure you want to continue connecting (yes/no)?". Type _yes_.
+This script use therefore a user and a key. Replace the ip adress, the user and the private key file in the _hosts_-file with the server ones. There will be a prompt "No matching host key fingerprint found in DNS. Are you sure you want to continue connecting (yes/no)?". Type _yes_.
 ```
 ansible pipe -m raw -a "echo server is online" // check if the server responses
 ```
@@ -48,7 +46,7 @@ ansible-playbook updateAnsible.yml
 
 The following playbooks require Ansible 2.4 or higher.
 ### Setup playbook
-This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user 'ansible' (which is in docker and sudo group), shares a ssh key and deletes the start user (exclusive home).
+This playbook adds a NOPASSWD entry in the sudoers file, forbit ssh password authentification, creates a user 'ansible' (which is in docker and sudo group) and shares a own ssh key.
 ```
 ansible-playbook -K run.yml
 ```

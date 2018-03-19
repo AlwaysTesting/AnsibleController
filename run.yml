@@ -52,13 +52,6 @@
       user: ansible
       state: present
       key: "{{ lookup('file', '~' + lookup('env','USER') + '/.ssh/id_rsa.pub') }}"  
-  - name: Output apt
-    debug:
-      msg: "{{ ansible_user }}"
-  - name: Delete start user
-    user:
-      name: "{{ ansible_user }}"
-      state: absent
   roles:
   - sshd
   

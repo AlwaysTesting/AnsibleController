@@ -1,0 +1,14 @@
+---
+# Startes the pipeline
+# This playbook installs docker and creates some containers (jenkins, ansible, git).
+# The git will be initialized with this example project: https://github.com/AlwaysTesting/ExampleProject.git.
+# Jenkins will use this git to go on building this pipeline.
+
+- hosts: pipe
+  become: yes 
+  tasks:
+  - name: Test
+    ping
+
+#
+# eof ..

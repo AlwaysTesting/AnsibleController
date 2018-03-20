@@ -61,7 +61,7 @@
     lineinfile:
       path: hosts
       state: present
-      regexp: '^([^\\s]*)'
+      regexp: '^([^\\s]+)\\sansible_connection=[^\\s]+\\sansible_user=[^\\s]+'
       line: '\1 ansible_connection=ssh ansible_user=ansible'
       backrefs: yes
       

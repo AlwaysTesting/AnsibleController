@@ -8,7 +8,7 @@
   become: yes 
   tasks:
   - name: Test
-    ping
+    ping:
 
 #
 # eof ..
